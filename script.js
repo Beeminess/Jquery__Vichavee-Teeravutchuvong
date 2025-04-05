@@ -43,3 +43,20 @@ getWeatherBTN.addEventListener("click", function () {
     weatherResultDiv.innerHTML = `<p style="color:red;">Please enter a city name.</p>`;
   }
 });
+
+function displayWeatherData(data) {
+  const iconCode = data.weather[0].icon; // e.g., "10d"
+  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+  const displayData = `
+    <p><strong>City:</strong> ${data.name}</p>
+    <p><strong>Temperature:</strong> ${data.main.temp} °C</p>
+    <p><strong>Weather:</strong> ${data.weather[0].main}</p>
+    <p><strong>Description:</strong> ${data.weather[0].description}</p>
+    <img src="${iconUrl}" alt="Weather Icon" style="width: 80px; height: 80px;" />
+    <p><strong>Humidity:</strong> ${data.main.humidity}%</p>
+    <p><strong>Wind Speed:</strong> ${data.wind.speed} m/s</p>
+  `;
+
+  weatherResultDiv.innerHTML = displayData;
+}
